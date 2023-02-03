@@ -1,0 +1,44 @@
+.filter-box{
+    position: relative;
+}
+
+.select-box{
+    cursor: pointer;
+}
+
+.select-box select {
+    width: 100%;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.checkboxes{
+    position: absolute;
+    background: #f7f7f7;
+    border: 2px solid #e0e0e0;
+    padding: 25px 70px 25px 40px;
+    transition: all 0.5s;
+}
+
+.checkboxes-hide{
+    display: none;
+    opacity: 0;
+}
+
+.checkboxes-show{
+    display: block;
+    opacity: 1;
+}
+
+.custom-cell .badge{
+    font-size: 12px;
+}

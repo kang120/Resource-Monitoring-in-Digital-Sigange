@@ -1,0 +1,22 @@
+.report-table{
+    width: 100%;
+    min-height: 500px;
+    text-align: center;
+}
+
+.report-table td, .report-table th{
+    padding: 15px 15px;
+    border: 1px solid black;
+}
+
+.custom-cell .badge{
+    font-size: 12px;
+}
+
+.form-check input, .form-check label{
+    cursor: pointer;
+}
+
+.form-select{
+    cursor: pointer;
+}
