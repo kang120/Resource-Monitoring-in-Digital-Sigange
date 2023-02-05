@@ -1,0 +1,16 @@
+.card h1{
+    font-size: 4em;
+}
+
+.card-title{
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.accordion-button:not(.collapsed){
+    color: black !important;
+    background-color: white !important;
+}
+
+.accordion-button{
+    font-size: 0.6em;
+}

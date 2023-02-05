@@ -243,30 +243,30 @@ const UserDashboard = ({ user_id }) => {
                 <div className="filter-box" ref={filterbox}>
                     <div className="select-box" onClick={showCheckboxes}>
                         <select>
-                            <option selected>Filter Columns</option>
+                            <option>Filter Columns</option>
                         </select>
                         <div className="overSelect"></div>
                     </div>
                     <div className={`checkboxes checkboxes-${showCheckbox ? 'show' : 'hide'}`}>
                         <div className="form-check mb-2">
                             <input className="form-check-input" type="checkbox" value="description" id="description" onChange={changeColumn} checked={filteredColumns.includes('description')} />
-                            <label className="form-check-label text-nowrap" for="description">Device Description</label>
+                            <label className="form-check-label text-nowrap" htmlFor="description">Device Description</label>
                         </div>
                         <div className="form-check mb-2">
                             <input className="form-check-input" type="checkbox" value="timezone" id="timezone" onChange={changeColumn} checked={filteredColumns.includes('timezone')} />
-                            <label className="form-check-label" for="timezone">Device Timezone</label>
+                            <label className="form-check-label" htmlFor="timezone">Device Timezone</label>
                         </div>
                         <div className="form-check mb-2">
                             <input className="form-check-input" type="checkbox" value="layout" id="layout" onChange={changeColumn} checked={filteredColumns.includes('layout')} />
-                            <label className="form-check-label" for="layout">Layout Played</label>
+                            <label className="form-check-label" htmlFor="layout">Layout Played</label>
                         </div>
                         <div className="form-check mb-2">
                             <input className="form-check-input" type="checkbox" value="resolution" id="resolution" onChange={changeColumn} checked={filteredColumns.includes('resolution')} />
-                            <label className="form-check-label" for="resolution">Screen Resolution</label>
+                            <label className="form-check-label" htmlFor="resolution">Screen Resolution</label>
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="status" id="status" onChange={changeColumn} checked={filteredColumns.includes('status')} />
-                            <label className="form-check-label" for="status">Device Status</label>
+                            <label className="form-check-label" htmlFor="status">Device Status</label>
                         </div>
                     </div>
                 </div>

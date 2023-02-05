@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AdminDashboard from "../components/AdminDashboard.js";
-import UserDashboard from "../components/UserDashboard.js/index.js";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import AdminDashboard from "../components/TableReport";
+import UserDashboard from "../components/UserDashboard";
 import useSessionStore from "../stores/sessionStore";
 
 const DashBoardView = () => {
@@ -19,63 +20,14 @@ const DashBoardView = () => {
         }
     }, [])
 
-    const logout = () => {
-        window.sessionStorage.removeItem('auth');
-        navigate('/login')
-    }
-
     return (
         <div>
-            <div className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-                <div className="container-fluid">
-                    <div className='collapse navbar-collapse'>
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Layouts
-                                </a>
-                            </li>
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Devices
-                                </a>
-                            </li>
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Publish
-                                </a>
-                            </li>
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Devices
-                                </a>
-                            </li>
-                            <li className="nav-item text-uppercase">
-                                <a className="nav-link">
-                                    Learn
-                                </a>
-                            </li>
-                        </ul>
-                        <ul className="navbar-nav ms-auto">
-                            <li className="nav-item ms-auto text-uppercase">
-                                <a className="nav-link" onClick={logout}>
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <Header />
 
             <div className="page-body">
                 {
                     auth.user_type == 'admin' ?
-                    <AdminDashboard /> :
+                    <Outlet />:
                     <UserDashboard user_id={auth.user_id} />
                 }
             </div>

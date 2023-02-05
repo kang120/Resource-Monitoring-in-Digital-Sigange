@@ -1,13 +1,13 @@
 import axios from "axios";
 import DataTables from "datatables.net-dt";
 import { useEffect, useMemo, useState } from "react";
-import { getFrequencyPercentage, getNumberFrequencyPercentage, sortByClusterOrder, sortUserByCluser } from "../../helpers/ClusterHelper";
+import { getFrequencyPercentage, getNumberFrequencyPercentage, sortByClusterOrder, sortUserByCluser } from "../../helpers/TableHelper";
 import { getLastWeekMonth } from "../../helpers/DateHelper";
 import Table from './Table'
 import './index.css'
 import CustomCell from "./CustomCell";
 
-const AdminDashboard = () => {
+const TableReport = () => {
     const { lastWeek, lastMonth, lastYear } = getLastWeekMonth();
 
     const [reportType, setReportType] = useState('week')
@@ -151,7 +151,7 @@ const AdminDashboard = () => {
 
                 const years = []
 
-                for(let i = min_year; i <= max_year; i++){
+                for (let i = min_year; i <= max_year; i++) {
                     years.push(i);
                 }
 
@@ -164,9 +164,9 @@ const AdminDashboard = () => {
     }, [])
 
     useEffect(() => {
-        if(reportType == 'week'){
+        if (reportType == 'week') {
             fetchWeekReport();
-        }else{
+        } else {
             fetchMonthReport();
         }
     }, [week, month, year, reportType])
@@ -208,9 +208,9 @@ const AdminDashboard = () => {
     }
 
     const onWeekMonthChange = (e) => {
-        if(reportType == 'week'){
+        if (reportType == 'week') {
             setWeek(e.target.value)
-        }else{
+        } else {
             setMonth(e.target.value)
         }
     }
@@ -240,20 +240,20 @@ const AdminDashboard = () => {
                     <select className="form-select" onChange={onWeekMonthChange}>
                         {
                             reportType == 'week' ?
-                            <>
-                                {
-                                    Array.from({length: 52}, (_, i) => i + 1).map((w, index) => {
-                                        return <option key={index} value={w} selected={w == week}>{w}</option>
-                                    })
-                                }
-                            </> :
-                            <>
-                                {
-                                    Array.from({length: 12}, (_, i) => i + 1).map((m, index) => {
-                                        return <option key={index} value={m} selected={m == month}>{m}</option>
-                                    })
-                                }
-                            </>
+                                <>
+                                    {
+                                        Array.from({ length: 52 }, (_, i) => i + 1).map((w, index) => {
+                                            return <option key={index} value={w} selected={w == week}>{w}</option>
+                                        })
+                                    }
+                                </> :
+                                <>
+                                    {
+                                        Array.from({ length: 12 }, (_, i) => i + 1).map((m, index) => {
+                                            return <option key={index} value={m} selected={m == month}>{m}</option>
+                                        })
+                                    }
+                                </>
                         }
                     </select>
                 </div>
@@ -276,4 +276,4 @@ const AdminDashboard = () => {
     )
 }
 
-export default AdminDashboard;
+export default TableReport;
