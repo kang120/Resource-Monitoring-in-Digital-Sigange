@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import AdminDashboard from "../components/TableReport";
+import AdminDashboard from "../components/AdminDashboard";
 import UserDashboard from "../components/UserDashboard";
 import useSessionStore from "../stores/sessionStore";
 
@@ -13,9 +13,9 @@ const DashBoardView = () => {
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('auth'));
 
-        if(user == null){
+        if (user == null) {
             navigate('/login')
-        }else{
+        } else {
             setAuth(user)
         }
     }, [])
@@ -27,8 +27,8 @@ const DashBoardView = () => {
             <div className="page-body">
                 {
                     auth.user_type == 'admin' ?
-                    <Outlet />:
-                    <UserDashboard user_id={auth.user_id} />
+                        <AdminDashboard /> :
+                        <UserDashboard user_id={auth.user_id} />
                 }
             </div>
         </div>

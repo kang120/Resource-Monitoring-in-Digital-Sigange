@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import './index.css'
 
 const Header = () => {
     const navigate = useNavigate();
@@ -14,38 +15,23 @@ const Header = () => {
                 <div className='collapse navbar-collapse'>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item text-uppercase">
-                            <a className="nav-link">
+                            <a className="nav-link" href="dashboard">
                                 Dashboard
                             </a>
                         </li>
                         <li className="nav-item text-uppercase">
-                            <a className="nav-link">
-                                Layouts
-                            </a>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <a className="nav-link">
-                                Devices
-                            </a>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <a className="nav-link">
-                                Publish
-                            </a>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <a className="nav-link">
-                                Devices
-                            </a>
-                        </li>
-                        <li className="nav-item text-uppercase">
-                            <a className="nav-link">
-                                Learn
+                            <a className="nav-link" href="user_activities">
+                                User Activities
                             </a>
                         </li>
                     </ul>
                     <ul className="navbar-nav ms-auto">
-                        <li className="nav-item ms-auto text-uppercase">
+                        <li className="nav-item text-uppercase">
+                            <a className="nav-link" href="users">
+                                Users
+                            </a>
+                        </li>
+                        <li className="nav-item text-uppercase">
                             <a className="nav-link" onClick={logout}>
                                 Logout
                             </a>

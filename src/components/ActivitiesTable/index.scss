@@ -1,0 +1,64 @@
+.p-datatable-thead,
+.p-datatable-thead th {
+    background: #e0e0e0 !important;
+    color: #000000 !important;
+}
+
+th:first-child .p-column-header-content {
+    justify-content: center !important;
+}
+
+.tooltip-text{
+    position: absolute;
+    width: 150px;
+    background: #4a4a4a;
+    color: #e0e0e0;
+    padding: 10px 5px;
+    border-radius: 10px;
+    transform: translateX(-47%);
+    visibility: hidden;
+}
+
+.custom-tooltip:hover .tooltip-text{
+    visibility: visible;
+}
+
+.icon {
+    margin-left: 15px;
+    transition: all 0.5s;
+}
+
+.icon-active {
+    transform: rotate(-180deg);
+    transition: all 0.5s;
+}
+
+.dropdown {
+    background: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    z-index: 1;
+    padding: 15px 20px;
+    padding-top: 5px;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 15%);
+    border-radius: 0 0 6px 6px;
+    width: 100%;
+    max-height: 0px;
+    opacity: 0;
+    display: none;
+    overflow: hidden;
+}
+
+.dropdown-active {
+    max-height: 200px;
+    overflow: auto;
+    opacity: 1;
+    display: block;
+}
+
+.dropdown input,
+.dropdown label {
+    cursor: pointer;
+}

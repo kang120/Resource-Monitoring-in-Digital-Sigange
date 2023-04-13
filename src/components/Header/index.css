@@ -1,0 +1,15 @@
+.navbar{
+    color: #bdbdbd;
+    padding: 25px;
+}
+
+.navbar .nav-item{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #bdbdbd;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .85px;
+    text-transform: uppercase;
+    cursor: pointer;
+}

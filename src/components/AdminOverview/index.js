@@ -4,18 +4,22 @@ import { getFrequencyPercentage, getNumberFrequencyPercentage, sortByClusterOrde
 import { countFrequency, countMode } from '../../helpers/OverviewHelper';
 import BarChart from '../Charts/BarChart';
 import './index.css'
-import { getBarChartFrequencytData } from '../../helpers/ClusterHelper';
+import { getBarChartFrequencyData, getBarChartPeriodFrequencyData, getPieChartComponentData } from '../../helpers/ChartHelper';
+import PieChart from '../Charts/PieChart';
+import { useNavigate } from 'react-router-dom';
 
 const AdminOverview = () => {
     const [overviewData, setOverviewData] = useState({})
     const [clusterData, setClusterData] = useState([])
 
-    const [reportType, setReportType] = useState('week')
+    const [reportType, setReportType] = useState('month')
     const [availableYear, setAvailableYear] = useState([])
 
     const [week, setWeek] = useState(51)
     const [month, setMonth] = useState(11)
     const [year, setYear] = useState(2022)
+
+    const navigate = useNavigate();
 
     const fetchWeekReport = async () => {
         const res = await fetch('http://localhost:2020/api/get_week_cluster', {
@@ -101,9 +105,11 @@ const AdminOverview = () => {
                 schedule_times.push(user['schedule_times'])
             })
 
-            const login_times_chart_data = getBarChartFrequencytData(login_times, 'login')
-            const manage_times_chart_data = getBarChartFrequencytData(manage_times, 'manage')
-            const schedule_times_chart_data = getBarChartFrequencytData(schedule_times, 'schedule')
+            const login_times_chart_data = getBarChartFrequencyData(login_times, 'Login')
+            const manage_times_chart_data = getBarChartFrequencyData(manage_times, 'Manage')
+            const schedule_times_chart_data = getBarChartFrequencyData(schedule_times, 'Schedule')
+            const login_periods_chart_data = getBarChartPeriodFrequencyData(login_periods)
+            const most_used_components_chart_data = getPieChartComponentData(most_used_components)
 
             const login_periods_chart_label = getFrequencyPercentage(login_periods);
             const most_used_components_chart_label = getFrequencyPercentage(most_used_components);
@@ -116,6 +122,8 @@ const AdminOverview = () => {
                 login_times_chart_data: login_times_chart_data,
                 manage_times_chart_data: manage_times_chart_data,
                 schedule_times_chart_data: schedule_times_chart_data,
+                login_periods_chart_data: login_periods_chart_data,
+                most_used_components_chart_data: most_used_components_chart_data,
                 login_times_chart_label: login_times_chart_label,
                 manage_times_chart_label: manage_times_chart_label,
                 schedule_times_chart_label: schedule_times_chart_label,
@@ -167,6 +175,8 @@ const AdminOverview = () => {
         } else {
             fetchMonthReport();
         }
+
+        setClusterData([]);
     }, [week, month, year, reportType])
 
     const onTypeChange = (e) => {
@@ -185,21 +195,25 @@ const AdminOverview = () => {
         setYear(e.target.value)
     }
 
+    const gotoReportTable = () => {
+        navigate('/dashboard/table')
+    }
+
     return (
         <div>
             <h1>Dashboard</h1>
 
             <div className="mt-5 d-flex align-items-center">
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="report-type" id="weekly" value='week' checked={reportType == 'week'} onChange={onTypeChange} />
-                    <label className="form-check-label" htmlFor="weekly">
-                        Weekly
-                    </label>
-                </div>
-                <div className="form-check form-check-inline">
                     <input className="form-check-input" type="radio" name="report-type" id="monthly" value='month' checked={reportType == 'month'} onChange={onTypeChange} />
                     <label className="form-check-label" htmlFor="monthly">
                         Monthly
+                    </label>
+                </div>
+                <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="report-type" id="weekly" value='week' checked={reportType == 'week'} onChange={onTypeChange} />
+                    <label className="form-check-label" htmlFor="weekly">
+                        Weekly
                     </label>
                 </div>
 
@@ -274,54 +288,37 @@ const AdminOverview = () => {
                 </div>
             </div>
 
-            <h4 className='mt-5'>User Cluster</h4>
-
-            <div className='accordion mt-5'>
-                <div className='accordion-item'>
-                    <h2 className='accordion-header'>
-                        <button className='accordion-button p-4' type='button' data-bs-toggle='collapse' data-bs-target='#cluster-1'>
-                            <b>Cluster 1</b>
-                        </button>
-                    </h2>
-                    <div id="cluster-1" class="accordion-collapse collapse show">
-                        <div className="accordion-body">
-                            <BarChart />
-                        </div>
-                    </div>
-                </div>
-                <div className='accordion-item'>
-                    <h2 className='accordion-header'>
-                        <button className='accordion-button p-4' type='button' data-bs-toggle='collapse' data-bs-target='#cluster-2'>
-                            <b>Cluster 2</b>
-                        </button>
-                    </h2>
-                    <div id="cluster-2" className="accordion-collapse collapse">
-                        <div className="accordion-body">
-                            <div>Diagram 1</div>
-                            <div>Diagram 2</div>
-                            <div>Diagram 3</div>
-                            <div>Diagram 4</div>
-                            <div>Diagram 5</div>
-                        </div>
-                    </div>
-                </div>
-                <div className='accordion-item'>
-                    <h2 className='accordion-header'>
-                        <button className='accordion-button p-4' type='button' data-bs-toggle='collapse' data-bs-target='#cluster-3'>
-                            <b>Cluster 3</b>
-                        </button>
-                    </h2>
-                    <div id="cluster-3" className="accordion-collapse collapse">
-                        <div className="accordion-body">
-                            <div>Diagram 1</div>
-                            <div>Diagram 2</div>
-                            <div>Diagram 3</div>
-                            <div>Diagram 4</div>
-                            <div>Diagram 5</div>
-                        </div>
-                    </div>
-                </div>
+            <div className='d-flex align-items-center mt-5'>
+                <h4>User Cluster</h4>
+                <button className='btn btn-primary ms-auto' onClick={gotoReportTable}>View Report Table</button>
             </div>
+
+            {
+                clusterData.length == 0 ?
+                <div>No Record Found</div> :
+                <div className='accordion mt-5'>
+                    {
+                        clusterData.map((cluster, index) => (
+                            <div className='accordion-item'>
+                            <h2 className='accordion-header'>
+                                <button className='accordion-button p-4' type='button' data-bs-toggle='collapse' data-bs-target={`#cluster-${index+1}`}>
+                                    <b>Cluster {index+1}</b>
+                                </button>
+                            </h2>
+                            <div id={`cluster-${index+1}`} class={`accordion-collapse collapse ${index == 0 ? 'show' : 'show'}`}>
+                                <div className="accordion-body d-flex flex-wrap justify-content-around">
+                                    <BarChart data={clusterData[index]['login_times_chart_data']} title={'Total Login Times'} />
+                                    <BarChart data={clusterData[index]['manage_times_chart_data']} title={'Total Manage Times'} />
+                                    <BarChart data={clusterData[index]['schedule_times_chart_data']} title={'Total Schedule Times'} />
+                                    <BarChart data={clusterData[index]['login_periods_chart_data']} title={'Login Periods'} />
+                                    <PieChart data={clusterData[index]['most_used_components_chart_data']} title={'Most Used Components'} />
+                                </div>
+                            </div>
+                        </div>
+                        ))
+                    }
+                </div>
+            }
         </div>
     )
 }

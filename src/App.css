@@ -126,26 +126,24 @@ body, html{
     margin: 0;
 }
 
-.navbar{
-    color: #bdbdbd;
-    padding: 25px;
-}
-
-.navbar .nav-item{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: #bdbdbd;
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: .85px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
 .page-body{
     margin-top: 80px;
     padding-top: 4rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    padding-left: 12rem;
+    padding-right: 12rem;
     padding-bottom: 4rem;
+    min-height: 100%;
+}
+
+.loading-text{
+    font-size: 2.5em;
+    opacity: 0.4;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
