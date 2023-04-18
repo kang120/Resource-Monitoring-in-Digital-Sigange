@@ -24,6 +24,11 @@ const Header = () => {
                                 User Activities
                             </a>
                         </li>
+                        <li className="nav-item text-uppercase">
+                            <a className="nav-link" href="report">
+                                Report
+                            </a>
+                        </li>
                     </ul>
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item text-uppercase">

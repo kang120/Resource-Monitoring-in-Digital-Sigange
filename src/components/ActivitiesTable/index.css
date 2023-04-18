@@ -10,12 +10,13 @@ th:first-child .p-column-header-content {
 
 .tooltip-text{
     position: absolute;
-    width: 150px;
+    width: 120px;
     background: #4a4a4a;
     color: #e0e0e0;
     padding: 10px 5px;
     border-radius: 10px;
-    transform: translateX(-47%);
+    font-size: 0.9em;
+    transform: translateX(-20%);
     visibility: hidden;
 }
 

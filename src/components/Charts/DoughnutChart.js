@@ -1,6 +1,6 @@
 import { Chart } from "primereact/chart";
 
-const PieChart = ({ data, xlabels }) => {
+const DoughnutChart = ({ data, xlabels }) => {
 
     const chartData = {
         labels: xlabels,
@@ -8,14 +8,14 @@ const PieChart = ({ data, xlabels }) => {
             {
                 data: data,
                 backgroundColor: [
-                    'rgb(153, 102, 255)',
-                    'rgb(212, 210, 93)',
-                    'rgb(237, 99, 85)'
+                    'rgb(255, 159, 64)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)'
                 ],
                 hoverBackgroundColor: [
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(230, 228, 122, 0.2)',
-                    'rgba(240, 150, 141, 0.2)'
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(54, 162, 235, 0.5)'
                 ]
             }
         ]
@@ -33,9 +33,9 @@ const PieChart = ({ data, xlabels }) => {
 
     return (
         <div className="card flex justify-content-center">
-            <Chart type="pie" data={chartData} options={chartOptions} width='400px' />
+            <Chart type="doughnut" data={chartData} options={chartOptions} width='400px' />
         </div>
     )
 }
 
-export default PieChart;
+export default DoughnutChart;
