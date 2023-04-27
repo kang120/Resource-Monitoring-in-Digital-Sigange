@@ -1,6 +1,6 @@
 {
+    "name": "screenplifytracker",
     "homepage": "https://kang120.github.io/Resource-Monitoring-in-Digital-Sigange/",
-    "name": "app",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
