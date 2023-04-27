@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import AdminDashboard from "../components/AdminDashboard";
 import UserDashboard from "../components/UserDashboard";
 import useSessionStore from "../stores/sessionStore";
+import Alerts from "../components/Alerts";
 
 const DashBoardView = () => {
     const { auth, setAuth } = useSessionStore();
@@ -25,6 +26,7 @@ const DashBoardView = () => {
             <Header />
 
             <div className="page-body">
+                <Alerts />
                 {
                     auth.user_type == 'admin' ?
                         <AdminDashboard /> :

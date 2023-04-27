@@ -5,6 +5,7 @@ import ActivitiesTable from "../components/ActivitiesTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import Alerts from "../components/Alerts";
 
 const ActivitiesView = () => {
     const [isLoading, setLoading] = useState(true)
@@ -166,8 +167,20 @@ const ActivitiesView = () => {
 
         const data = await res.json();
 
-        if(data.data == 'Success'){
-            navigate('/result')
+        if (data.data == 'Success') {
+            navigate('/report/1', {
+                state: {
+                    isClusteringResult: true
+                }
+            })
+
+            setClustering(false)
+        } else {
+            navigate(0)
+            window.localStorage.setItem('visited', false)
+            window.localStorage.setItem('alert_message_type', 'danger')
+            window.localStorage.setItem('alert_message', 'Dataset selected not suitable for clustering. Please try again.')
+
             setClustering(false)
         }
     }
@@ -177,6 +190,7 @@ const ActivitiesView = () => {
             <Header />
 
             <div className="page-body">
+                <Alerts />
                 <h2 className="mb-5">Activities Data</h2>
 
                 {
@@ -315,7 +329,7 @@ const ActivitiesView = () => {
 
             {
                 isClustering ?
-                    <div className="position-fixed top-0 w-100 h-100" style={{ background: 'rgba(217, 217, 217, 0.7)'}}>
+                    <div className="position-fixed top-0 w-100 h-100" style={{ background: 'rgba(217, 217, 217, 0.7)' }}>
                         <div className="loading-text d-flex align-items-center">
                             <div className="spinner-border text-success me-5" style={{ width: '5rem', height: '5rem' }} role="status">
                                 <span className="visually-hidden">Wait for clustering...</span>

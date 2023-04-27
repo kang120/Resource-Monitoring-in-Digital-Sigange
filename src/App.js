@@ -11,6 +11,7 @@ import LoginView from './views/LoginView';
 import DashBoardView from './views/DashBoardView';
 import ActivitiesView from './views/ActivitiesView';
 import UserView from './views/UserView';
+import ReportListView from './views/ReportListView';
 import ReportView from './views/ReportView';
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
                 <Route path="dashboard" element={<DashBoardView />} />
                 <Route path="user_activities" element={<ActivitiesView />} />
                 <Route path="users" element={<UserView />} />
-                <Route path="report" element={<ReportView />} />
+                <Route path="report" element={<ReportListView />} />
+                <Route path="report/:id" element={<ReportView />} />
             </Routes>
         </Router>
     );

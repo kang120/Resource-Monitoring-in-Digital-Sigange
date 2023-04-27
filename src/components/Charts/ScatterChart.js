@@ -1,7 +1,7 @@
 import { Chart } from 'primereact/chart';
 import './index.css'
 
-const ScatterChart = ({ data, xlabels, label, cmaps }) => {
+const ScatterChart = ({ data, cmaps }) => {
     const chartData = {
         datasets: [
             {
@@ -19,8 +19,12 @@ const ScatterChart = ({ data, xlabels, label, cmaps }) => {
                 ticks: {
                     autoSkip: false,
                     maxRotation: 0,
-                    minRotation: 0
+                    minRotation: 0,
+                    display: false
                 }
+            },
+            y: {
+                display: false
             }
         },
         plugins: {

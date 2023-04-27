@@ -29,6 +29,9 @@ const EditUserForm = ({ actionUser, users }) => {
 
     const updateUser = async () => {
         navigate(0)
+        window.localStorage.setItem('visited', false)
+        window.localStorage.setItem('alert_message_type', 'success')
+        window.localStorage.setItem('alert_message', 'Successfully update user')
 
         const url = settings['api']['base_url'] + settings['api']['updateUser']
 
@@ -181,7 +184,7 @@ const EditUserForm = ({ actionUser, users }) => {
 
                             <div class="form-check form-switch mt-4">
                                 <input class="form-check-input cursor-pointer" type="checkbox" role="switch" id="change-pw" checked={changePassword}
-                                       onChange={() => setChangePassword(prev => !prev)} />
+                                    onChange={() => setChangePassword(prev => !prev)} />
                                 <label class="form-check-label cursor-pointer" for="change-pw">Change Password</label>
                             </div>
 

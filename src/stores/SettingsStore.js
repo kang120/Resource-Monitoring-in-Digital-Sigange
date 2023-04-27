@@ -13,7 +13,11 @@ const useSettingStore = create((set) => ({
             'updateUser': '/api/update_user',
             'deleteUser': '/api/delete_user',
             'customClustering': '/api/custom_clustering',
-            'getMonthCluster': '/api/get_month_cluster'
+            'getMonthCluster': '/api/get_month_cluster',
+            'getClusterReport': '/api/get_cluster_report',
+            'getClusterReports': '/api/get_cluster_reports',
+            'saveReport': '/api/save_report',
+            'deleteReport': '/api/delete_report'
         }
     },
 

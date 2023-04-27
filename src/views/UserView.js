@@ -9,6 +9,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AddUserForm from "../components/UserForm/AddUserForm";
 import DeleteUserForm from "../components/UserForm/DeleteUserForm";
 import EditUserForm from "../components/UserForm/EditUserForm";
+import Alerts from "../components/Alerts";
 
 const UserView = () => {
     const { settings } = useSettingStore();
@@ -50,9 +51,9 @@ const UserView = () => {
                     onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#edit-modal" />
                 {
                     row.id != 22 ?
-                    <FontAwesomeIcon className="ms-3 cursor-pointer" icon={faTrashCan} size='lg'
-                        onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#delete-modal" /> :
-                    null
+                        <FontAwesomeIcon className="ms-3 cursor-pointer" icon={faTrashCan} size='lg'
+                            onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#delete-modal" /> :
+                        null
                 }
             </div>
         )
@@ -65,6 +66,7 @@ const UserView = () => {
             <Header />
 
             <div className="page-body">
+                <Alerts />
                 <h2 className="mb-5">Users</h2>
 
                 <div className="mt-5 d-flex">
