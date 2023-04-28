@@ -15,17 +15,18 @@ import ReportListView from './views/ReportListView';
 import ReportView from './views/ReportView';
 
 function App() {
+    console.log(process.env.PUBLIC_URL)
 
     return (
         <Router>
             <Routes>
                 <Route path='/' element={<Navigate to="/login" />} />
-                <Route path="login" element={<LoginView />} />
-                <Route path="dashboard" element={<DashBoardView />} />
-                <Route path="user_activities" element={<ActivitiesView />} />
-                <Route path="users" element={<UserView />} />
-                <Route path="report" element={<ReportListView />} />
-                <Route path="report/:id" element={<ReportView />} />
+                <Route path="/login" element={<LoginView />} />
+                <Route path="/dashboard" element={<DashBoardView />} />
+                <Route path="/user_activities" element={<ActivitiesView />} />
+                <Route path="/users" element={<UserView />} />
+                <Route path="/report" element={<ReportListView />} />
+                <Route path="/report/:id" element={<ReportView />} />
             </Routes>
         </Router>
     );

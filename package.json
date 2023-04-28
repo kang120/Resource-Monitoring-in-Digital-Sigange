@@ -1,6 +1,6 @@
 {
-    "name": "screenplifytracker",
-    "homepage": "https://kang120.github.io/Resource-Monitoring-in-Digital-Sigange/",
+    "name": "app",
+    "homepage": "",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -17,7 +17,6 @@
         "chart.js": "^4.2.1",
         "datatables.net": "^1.13.1",
         "datatables.net-dt": "^1.13.1",
-        "gh-pages": "^5.0.0",
         "mysql2": "^2.3.3",
         "primeicons": "^6.0.1",
         "primereact": "^9.2.1",
@@ -35,9 +34,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
