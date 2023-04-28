@@ -49,8 +49,6 @@ const LoginView = () => {
                 user_type: data.data.user_type,
             }
 
-            setAuth(user)
-
             window.sessionStorage.setItem('auth', JSON.stringify(user))
             navigate('/dashboard')
         }
