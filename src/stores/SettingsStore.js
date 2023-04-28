@@ -7,6 +7,7 @@ const useSettingStore = create((set) => ({
         "api": {
             "development_base_url": 'http://localhost:2020',
             "production_base_url": "https://screenplify-tracker-api.onrender.com",
+            "auth": '/api/auth',
             "getUserActivities": '/api/get_user_activities',
             'getMinMaxDate': '/api/get_min_max_date',
             'getUsers': '/api/get_users',
