@@ -9,8 +9,6 @@ const LoginView = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const { setAuth } = useSessionStore();
-
     const navigate = useNavigate();
 
     const [loginError, setLoginError] = useState('')
