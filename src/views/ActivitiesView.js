@@ -40,6 +40,7 @@ const ActivitiesView = () => {
     useEffect(() => {
         const fetchUserActivities = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
+            console.log('done first')
 
             const res = await fetch(url, {
                 method: 'GET',
@@ -48,8 +49,10 @@ const ActivitiesView = () => {
                     'Accept-Type': 'application/json'
                 }
             })
+            console.log('done second')
 
             const data = await res.json()
+            console.log('done third')
 
             setActivities(data.data)
             setFilterActivities(data.data)
@@ -170,7 +173,7 @@ const ActivitiesView = () => {
         setClustering(true)
 
         const url = settings['api']['base_url'] + settings['api']['customClustering']
-        
+
         const filterDate = {
             'month': selectedMonths,
             'year': selectedYears
