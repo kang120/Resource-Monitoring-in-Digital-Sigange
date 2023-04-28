@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/image/screenplify-logo.svg'
-import useSessionStore from '../stores/sessionStore';
+import useSettingStore from '../stores/SettingsStore';
 
 const LoginView = () => {
     const { settings } = useSettingStore()
