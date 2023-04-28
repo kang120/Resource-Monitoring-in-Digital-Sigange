@@ -18,7 +18,7 @@ const ActivitiesView = () => {
     const [showMonthDropdown, setMonthDropdown] = useState(false);
     const [showYearDropdown, setYearDropdown] = useState(false);
 
-    const [monthRange, ] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+    const [monthRange,] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
     const [yearRange, setYearRange] = useState([]);
 
     const [selectedMonths, setSelectedMonths] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
@@ -41,7 +41,13 @@ const ActivitiesView = () => {
         const fetchUserActivities = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
 
-            const res = await fetch(url)
+            const res = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept-Type': 'application/json'
+                }
+            })
 
             const data = await res.json()
 
@@ -58,7 +64,14 @@ const ActivitiesView = () => {
         const fetchMinMaxDate = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getMinMaxDate']
 
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept-Type': 'application/json'
+                }
+            });
+
             const data = await res.json();
 
             const min_year = parseInt(data.data.min_date.split(' ')[0].split('/')[2])   // 1/1/2022 11:57
