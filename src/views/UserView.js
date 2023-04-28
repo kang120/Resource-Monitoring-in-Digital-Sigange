@@ -10,6 +10,7 @@ import AddUserForm from "../components/UserForm/AddUserForm";
 import DeleteUserForm from "../components/UserForm/DeleteUserForm";
 import EditUserForm from "../components/UserForm/EditUserForm";
 import Alerts from "../components/Alerts";
+import { useNavigate } from "react-router-dom";
 
 const UserView = () => {
     const { settings } = useSettingStore();
@@ -17,6 +18,18 @@ const UserView = () => {
     const [userType, setUserType] = useState('admin')
 
     const [actionUser, setActionUser] = useState({})
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const user = JSON.parse(window.sessionStorage.getItem('auth'));
+
+        if (user == null) {
+            navigate('/login')
+        } else {
+            setAuth(user)
+        }
+    }, [])
 
     useEffect(() => {
         const fetchUsers = async () => {

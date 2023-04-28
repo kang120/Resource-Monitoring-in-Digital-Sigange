@@ -19,6 +19,16 @@ const ReportListView = () => {
     const [actionReport, setActionReport] = useState({});
 
     useEffect(() => {
+        const user = JSON.parse(window.sessionStorage.getItem('auth'));
+
+        if (user == null) {
+            navigate('/login')
+        } else {
+            setAuth(user)
+        }
+    }, [])
+
+    useEffect(() => {
         const fetchReports = async () => {
             const url = settings['api']['base_url'] + settings['api']['getClusterReports']
 
