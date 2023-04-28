@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import AdminDashboard from "../components/AdminDashboard";
 import UserDashboard from "../components/UserDashboard";

@@ -31,8 +31,8 @@ const ActivitiesTable = ({ filterActivities }) => {
 
     const userIdBodyTemplate = (row) => {
         const classname = classNames({
-            'text-primary': row.user_id == 22,
-            'text-danger': row.user_id == 0
+            'text-primary': row.user_id === 22,
+            'text-danger': row.user_id === 0
         })
 
         return <div className={classname}>{row.user_id}</div>

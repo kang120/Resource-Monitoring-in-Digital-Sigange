@@ -50,11 +50,11 @@ const ReportView = () => {
 
             const data = await res.json();
 
-            if (id == 2 || data.data == 'Data not found') {
+            if (id === 2 || data.data === 'Data not found') {
                 setPageNotFound(true)
 
                 return
-            } else if (id == 1 && location.state == undefined) {
+            } else if (id === 1 && location.state === undefined) {
                 setPageNotFound(true)
 
                 return

@@ -18,7 +18,7 @@ const ActivitiesView = () => {
     const [showMonthDropdown, setMonthDropdown] = useState(false);
     const [showYearDropdown, setYearDropdown] = useState(false);
 
-    const [monthRange, setMonthRange] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+    const [monthRange, ] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
     const [yearRange, setYearRange] = useState([]);
 
     const [selectedMonths, setSelectedMonths] = useState(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
