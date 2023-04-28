@@ -51,6 +51,7 @@ const ActivitiesView = () => {
             })
             console.log('done second')
             console.log(res)
+            console.log(JSON.parse("{data: 1"))
 
             const data = await res.json()
             console.log('done third')
