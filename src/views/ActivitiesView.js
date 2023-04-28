@@ -170,6 +170,7 @@ const ActivitiesView = () => {
         setClustering(true)
 
         const url = settings['api']['base_url'] + settings['api']['customClustering']
+        
         const filterDate = {
             'month': selectedMonths,
             'year': selectedYears
