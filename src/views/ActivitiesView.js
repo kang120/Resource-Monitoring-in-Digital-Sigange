@@ -31,8 +31,10 @@ const ActivitiesView = () => {
 
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('auth'));
+        console.log('first')
 
         if (user == null) {
+            console.log('testtttt')
             navigate('/login')
         }
     }, [])
