@@ -43,7 +43,7 @@ const ReportView = () => {
 
     useEffect(() => {
         const fetchReport = async () => {
-            const url = settings['api']['base_url'] + settings['api']['getClusterReport']
+            const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getClusterReport']
 
             const res = await fetch(url, {
                 method: 'POST',
@@ -136,7 +136,8 @@ const ReportView = () => {
     }
 
     const saveReport = async () => {
-        const url = settings['api']['base_url'] + settings['api']['saveReport']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['saveReport']
+        
         window.localStorage.setItem('visited', false)
         window.localStorage.setItem('alert_message_type', 'success')
         window.localStorage.setItem('alert_message', 'Successfully save report ' + saveReportName)

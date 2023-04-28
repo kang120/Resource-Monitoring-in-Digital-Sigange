@@ -4,6 +4,8 @@ import logo from '../assets/image/screenplify-logo.svg'
 import useSessionStore from '../stores/sessionStore';
 
 const LoginView = () => {
+    const { settings } = useSettingStore()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -24,7 +26,9 @@ const LoginView = () => {
 
         console.log(JSON.stringify(auth))
 
-        const res = await fetch('http://localhost:2020/api/auth', {
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
+
+        const res = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

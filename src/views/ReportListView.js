@@ -28,7 +28,7 @@ const ReportListView = () => {
 
     useEffect(() => {
         const fetchReports = async () => {
-            const url = settings['api']['base_url'] + settings['api']['getClusterReports']
+            const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getClusterReports']
 
             const res = await fetch(url)
 

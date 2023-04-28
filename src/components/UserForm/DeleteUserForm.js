@@ -12,7 +12,7 @@ const DeleteUserForm = ({ actionUser }) => {
         window.localStorage.setItem('alert_message_type', 'success')
         window.localStorage.setItem('alert_message', 'Successfully delete user ' + actionUser['username'])
 
-        const url = settings['api']['base_url'] + settings['api']['deleteUser']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['deleteUser']
 
         const res = await fetch(url, {
             method: 'POST',

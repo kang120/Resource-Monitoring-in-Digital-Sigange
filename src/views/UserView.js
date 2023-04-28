@@ -31,7 +31,7 @@ const UserView = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const url = settings['api']['base_url'] + settings['api']['getUsers']
+            const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUsers']
 
             const res = await fetch(url);
 

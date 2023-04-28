@@ -33,7 +33,7 @@ const EditUserForm = ({ actionUser, users }) => {
         window.localStorage.setItem('alert_message_type', 'success')
         window.localStorage.setItem('alert_message', 'Successfully update user')
 
-        const url = settings['api']['base_url'] + settings['api']['updateUser']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['updateUser']
 
         const res = await fetch(url, {
             method: 'POST',

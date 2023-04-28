@@ -24,7 +24,8 @@ const AddUserForm = ({ userType, users }) => {
     };
 
     const insertNewUser = async () => {
-        const url = settings['api']['base_url'] + settings['api']['addUser']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['addUser']
+        
         window.localStorage.setItem('visited', false)
         window.localStorage.setItem('alert_message_type', 'success')
         window.localStorage.setItem('alert_message', 'Successfully added user')

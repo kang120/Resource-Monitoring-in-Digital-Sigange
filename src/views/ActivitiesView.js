@@ -31,17 +31,15 @@ const ActivitiesView = () => {
 
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('auth'));
-        console.log('first')
 
         if (user == null) {
-            console.log('testtttt')
             navigate('/login')
         }
     }, [])
 
     useEffect(() => {
         const fetchUserActivities = async () => {
-            const url = settings['api']['base_url'] + settings['api']['getUserActivities']
+            const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
 
             const res = await fetch(url)
 
@@ -58,7 +56,7 @@ const ActivitiesView = () => {
 
     useEffect(() => {
         const fetchMinMaxDate = async () => {
-            const url = settings['api']['base_url'] + settings['api']['getMinMaxDate']
+            const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getMinMaxDate']
 
             const res = await fetch(url);
             const data = await res.json();
