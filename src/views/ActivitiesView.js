@@ -34,8 +34,6 @@ const ActivitiesView = () => {
 
         if (user == null) {
             navigate('/login')
-        } else {
-            setAuth(user)
         }
     }, [])
 

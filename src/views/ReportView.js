@@ -38,8 +38,6 @@ const ReportView = () => {
 
         if (user == null) {
             navigate('/login')
-        } else {
-            setAuth(user)
         }
     }, [])
 

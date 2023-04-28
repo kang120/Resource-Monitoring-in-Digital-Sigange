@@ -7,8 +7,6 @@ import useSessionStore from "../stores/sessionStore";
 import Alerts from "../components/Alerts";
 
 const DashBoardView = () => {
-    const { auth, setAuth } = useSessionStore();
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,8 +14,6 @@ const DashBoardView = () => {
 
         if (user == null) {
             navigate('/login')
-        } else {
-            setAuth(user)
         }
     }, [])
 
@@ -27,11 +23,7 @@ const DashBoardView = () => {
 
             <div className="page-body">
                 <Alerts />
-                {
-                    auth.user_type == 'admin' ?
-                        <AdminDashboard /> :
-                        <UserDashboard user_id={auth.user_id} />
-                }
+                <AdminDashboard />
             </div>
         </div>
     )

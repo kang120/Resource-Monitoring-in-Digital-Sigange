@@ -26,8 +26,6 @@ const UserView = () => {
 
         if (user == null) {
             navigate('/login')
-        } else {
-            setAuth(user)
         }
     }, [])
 
