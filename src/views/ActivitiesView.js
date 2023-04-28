@@ -42,14 +42,17 @@ const ActivitiesView = () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
             console.log('done first')
 
-            const data = await fetch(url, {
+            const res = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept-Type': 'application/json'
                 }
-            }).json()
-            
+            })
+            console.log('done second')
+            console.log(res)
+
+            const data = await res.json()
             console.log('done third')
 
             setActivities(data.data)
