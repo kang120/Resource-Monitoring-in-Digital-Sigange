@@ -25,10 +25,6 @@ const AddUserForm = ({ userType, users }) => {
 
     const insertNewUser = async () => {
         const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['addUser']
-        
-        window.localStorage.setItem('visited', false)
-        window.localStorage.setItem('alert_message_type', 'success')
-        window.localStorage.setItem('alert_message', 'Successfully added user')
 
         const res = await fetch(url, {
             method: 'POST',
@@ -45,6 +41,15 @@ const AddUserForm = ({ userType, users }) => {
                 }
             })
         })
+
+        const data = await res.json();
+
+        if (data.message == 'Success') {
+            console.log('added user successfully')
+            window.localStorage.setItem('visited', false)
+            window.localStorage.setItem('alert_message_type', 'success')
+            window.localStorage.setItem('alert_message', 'Successfully added user')
+        }
     }
 
     const submitForm = () => {
