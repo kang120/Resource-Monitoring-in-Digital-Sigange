@@ -21,6 +21,8 @@ const UserView = () => {
 
     const navigate = useNavigate();
 
+    const sessionUserId = JSON.parse(window.sessionStorage.getItem('auth')).id;
+
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('auth'));
 
@@ -57,16 +59,22 @@ const UserView = () => {
 
     const actionsBody = (row) => {
         return (
-            <div className="d-flex align-items-center">
-                <FontAwesomeIcon className="cursor-pointer" icon={faPenToSquare} size='lg'
-                    onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#edit-modal" />
+            <>
                 {
-                    row.id != 22 ?
-                        <FontAwesomeIcon className="ms-3 cursor-pointer" icon={faTrashCan} size='lg'
-                            onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#delete-modal" /> :
+                    sessionUserId == 22 ?
+                        <div className="d-flex align-items-center">
+                            <FontAwesomeIcon className="cursor-pointer" icon={faPenToSquare} size='lg'
+                                onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#edit-modal" />
+                            {
+                                row.id != 22 ?
+                                    <FontAwesomeIcon className="ms-3 cursor-pointer" icon={faTrashCan} size='lg'
+                                        onClick={() => setActionUser(row)} data-bs-toggle="modal" data-bs-target="#delete-modal" /> :
+                                    null
+                            }
+                        </div> :
                         null
                 }
-            </div>
+            </>
         )
     }
 
@@ -97,9 +105,13 @@ const UserView = () => {
                         </label>
                     </div>
 
-                    <button className="btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#add-modal">
-                        Add new {userType}
-                    </button>
+                    {
+                        sessionUserId == 22 ?
+                            <button className="btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#add-modal">
+                                Add new {userType}
+                            </button> :
+                            null
+                    }
                 </div>
 
                 <div className='mt-4'>

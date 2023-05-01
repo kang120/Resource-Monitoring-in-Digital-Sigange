@@ -18,6 +18,8 @@ const Header = () => {
     const user_activities_url = `${base_url}/user_activities`
     const report_url = `${base_url}/report`
 
+    const username = JSON.parse(window.sessionStorage.getItem('auth')).name
+
     return (
         <div className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
             <div className="container-fluid">
@@ -38,13 +40,14 @@ const Header = () => {
                                 Report
                             </a>
                         </li>
-                    </ul>
-                    <ul className="navbar-nav ms-auto">
                         <li className="nav-item text-uppercase">
-                            <a className="nav-link" href={`${base_url}/users`}>
+                            <a className={`nav-link ${window.location.pathname.split('/')[1] == 'users' ? 'active' : ''}`} href={`${base_url}/users`}>
                                 Users
                             </a>
                         </li>
+                    </ul>
+                    <ul className="navbar-nav ms-auto align-items-center">
+                        <li className="me-4 text-light">{username}</li>
                         <li className="nav-item text-uppercase">
                             <a className="nav-link" onClick={logout}>
                                 Logout

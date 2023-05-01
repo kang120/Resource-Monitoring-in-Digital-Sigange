@@ -45,7 +45,8 @@ const LoginView = () => {
             setLoginError('')
 
             const user = {
-                user_id: data.data.id,
+                id: data.data.id,
+                name: data.data.username,
                 user_type: data.data.user_type,
             }
 
