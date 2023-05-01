@@ -70,6 +70,14 @@ const LoginView = () => {
         })
     }, [])
 
+    useEffect(() => {
+        const user = window.sessionStorage.setItem('auth', JSON.stringify(user));
+
+        if(user != undefined){
+            navigate('/dashboard')
+        }
+    }, [])
+
     return (
         <div className="app container-fluid">
             <div className='row h-100'>
