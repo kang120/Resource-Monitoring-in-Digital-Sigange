@@ -71,7 +71,7 @@ const LoginView = () => {
     }, [])
 
     useEffect(() => {
-        const user = window.sessionStorage.getItem('auth', JSON.stringify(user));
+        const user = JSON.parse(window.sessionStorage.getItem('auth'));
 
         if(user != undefined){
             navigate('/dashboard')
