@@ -31,7 +31,7 @@ const EditUserForm = ({ actionUser, users }) => {
         navigate(0)
         window.localStorage.setItem('visited', false)
         window.localStorage.setItem('alert_message_type', 'success')
-        window.localStorage.setItem('alert_message', 'Successfully update user ' + actionUser['username'])
+        window.localStorage.setItem('alert_message', 'Successfully update user ' + username)
 
         const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['updateUser']
 
