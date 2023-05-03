@@ -164,7 +164,7 @@ const EditUserForm = ({ actionUser, users }) => {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id='form' class="needs-validation" noValidate>
+                        <form id='edit-form' class="needs-validation" noValidate>
                             <div class="mb-3">
                                 <label for="edit-username" class="form-label">Username</label>
                                 <input type="text" class={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="edit-username" placeholder="username"
