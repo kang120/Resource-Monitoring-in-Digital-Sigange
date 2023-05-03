@@ -32,6 +32,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchReport = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getMonthCluster']
+            console.log(url)
 
             const res = await fetch(url)
 

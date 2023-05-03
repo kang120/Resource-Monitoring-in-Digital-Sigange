@@ -25,6 +25,7 @@ const AddUserForm = ({ userType, users }) => {
 
     const insertNewUser = async () => {
         const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['addUser']
+        console.log(url)
 
         const res = await fetch(url, {
             method: 'POST',

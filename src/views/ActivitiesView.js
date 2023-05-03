@@ -40,7 +40,7 @@ const ActivitiesView = () => {
     useEffect(() => {
         const fetchUserActivities = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getUserActivities']
-            console.log('done first')
+            console.log(url)
 
             const res = await fetch(url, {
                 method: 'GET',
@@ -67,6 +67,7 @@ const ActivitiesView = () => {
     useEffect(() => {
         const fetchMinMaxDate = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getMinMaxDate']
+            console.log(url)
 
             const res = await fetch(url, {
                 method: 'GET',

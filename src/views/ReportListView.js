@@ -29,6 +29,7 @@ const ReportListView = () => {
     useEffect(() => {
         const fetchReports = async () => {
             const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['getClusterReports']
+            console.log(url)
 
             const res = await fetch(url)
 
@@ -86,6 +87,7 @@ const ReportListView = () => {
         window.localStorage.setItem('alert_message', 'Successfully delete report ' + actionReport['name'])
 
         const url = settings['api']['base_url'] + settings['api']['deleteReport']
+        console.log(url)
 
         const res = await fetch(url, {
             method: 'POST',
