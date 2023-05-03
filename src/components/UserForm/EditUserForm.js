@@ -129,7 +129,7 @@ const EditUserForm = ({ actionUser, users }) => {
         }
 
         if (submitFlag) {
-            document.getElementById("submit-btn").click();
+            document.getElementById("edit-submit-btn").click();
             updateUser();
         }
     }
@@ -166,8 +166,8 @@ const EditUserForm = ({ actionUser, users }) => {
                     <div class="modal-body">
                         <form id='form' class="needs-validation" noValidate>
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="username" placeholder="username"
+                                <label for="edit-username" class="form-label">Username</label>
+                                <input type="text" class={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="edit-username" placeholder="username"
                                     onChange={(e) => setUsername(e.target.value)} value={username} required />
                                 <div class="invalid-feedback">
                                     {usernameError}
@@ -175,8 +175,8 @@ const EditUserForm = ({ actionUser, users }) => {
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="email" placeholder="email@gmail.com"
+                                <label for="edit-email" class="form-label">Email</label>
+                                <input type="email" class={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="edit-email" placeholder="email@gmail.com"
                                     onChange={(e) => setEmail(e.target.value)} value={email} required />
                                 <div class="invalid-feedback">
                                     {emailError}
@@ -193,8 +193,8 @@ const EditUserForm = ({ actionUser, users }) => {
                                 changePassword ?
                                     <div className="mt-4">
                                         <div class="mb-3">
-                                            <label for="password" class="form-label">New Password</label>
-                                            <input type="password" class={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="password" placeholder="password"
+                                            <label for="edit-password" class="form-label">New Password</label>
+                                            <input type="password" class={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="edit-password" placeholder="password"
                                                 onChange={(e) => setPassword(e.target.value)} value={password} required />
                                             <div class="invalid-feedback">
                                                 {passwordError}
@@ -202,8 +202,8 @@ const EditUserForm = ({ actionUser, users }) => {
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="password2" class="form-label">Confirmed Password</label>
-                                            <input type="password" class={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="password2" placeholder="confirmed password"
+                                            <label for="edit-password2" class="form-label">Confirmed Password</label>
+                                            <input type="password" class={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="edit-password2" placeholder="confirmed password"
                                                 onChange={(e) => setPassword2(e.target.value)} value={password2} required />
                                             <div class="invalid-feedback">
                                                 {password2Error}
@@ -213,7 +213,7 @@ const EditUserForm = ({ actionUser, users }) => {
                             }
 
 
-                            <button id='submit-btn' class="btn btn-primary d-none" type="submit">Submit form</button>
+                            <button id='edit-submit-btn' class="btn btn-primary d-none" type="submit">Submit form</button>
                         </form>
                     </div>
                     <div class="modal-footer">
