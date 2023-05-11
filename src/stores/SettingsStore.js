@@ -6,7 +6,7 @@ const useSettingStore = create((set) => ({
         "production_base_url": '..',
         "api": {
             "development_base_url": 'http://localhost:2020',
-            "production_base_url": "https://d355-180-75-93-235.ngrok-free.app",
+            "production_base_url": "https://652b-180-75-93-96.ngrok-free.app",
             "auth": '/api/auth',
             "getUserActivities": '/api/get_user_activities',
             'getMinMaxDate': '/api/get_min_max_date',
