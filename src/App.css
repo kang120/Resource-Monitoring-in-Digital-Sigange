@@ -152,3 +152,54 @@ body, html{
     pointer-events: none;
     opacity: 0.6;
 }
+
+/* Admin Dashboard */
+.cluster-container {
+    height: 350px;
+}
+
+.cluster-container .accordion {
+    height: 100%;
+    overflow: auto;
+}
+
+.cluster-badge{
+    width: 2px;
+}
+
+.mt-6{
+    margin-top: 70px;
+}
+
+.tooltip-text{
+    position: absolute;
+    width: 50px;
+    background: #4a4a4a;
+    color: #e0e0e0;
+    padding: 10px 5px;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+.custom-tooltip:hover .tooltip-text{
+    visibility: visible;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #cecece;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #969696;
+}

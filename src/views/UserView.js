@@ -93,7 +93,7 @@ const UserView = () => {
                     <div className="form-check form-check-inline ms-2">
                         <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="admin" value="admin" checked={userType == 'admin'}
                             onChange={() => changeUserType('admin')} />
-                        <label className="form-check-label cursor-pointer" for="admin">
+                        <label className="form-check-label cursor-pointer" htmlFor="admin">
                             Admin
                         </label>
                     </div>
@@ -101,7 +101,7 @@ const UserView = () => {
                     <div className="form-check form-check-inline ms-4 cursor-pointer">
                         <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="user" value="user" checked={userType == 'user'}
                             onChange={() => changeUserType('user')} />
-                        <label className="form-check-label cursor-pointer" for="user">
+                        <label className="form-check-label cursor-pointer" htmlFor="user">
                             User
                         </label>
                     </div>

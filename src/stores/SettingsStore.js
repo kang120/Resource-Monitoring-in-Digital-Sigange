@@ -5,8 +5,8 @@ const useSettingStore = create((set) => ({
         "development_base_url": 'http://localhost:3000',
         "production_base_url": '..',
         "api": {
-            "development_base_url": 'https://screenplify-tracker-api.onrender.com',
-            "production_base_url": "https://screenplify-tracker-api.onrender.com",
+            "development_base_url": 'http://localhost:2020',
+            "production_base_url": "https://d355-180-75-93-235.ngrok-free.app",
             "auth": '/api/auth',
             "getUserActivities": '/api/get_user_activities',
             'getMinMaxDate': '/api/get_min_max_date',

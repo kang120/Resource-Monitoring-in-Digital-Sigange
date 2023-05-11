@@ -156,56 +156,56 @@ const EditUserForm = ({ actionUser, users }) => {
     }, [actionUser])
 
     return (
-        <div class="modal fade" id="edit-modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="edit-modal" tabIndex="-1">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Edit User</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form id='edit-form' class="needs-validation" noValidate>
-                            <div class="mb-3">
-                                <label for="edit-username" class="form-label">Username</label>
-                                <input type="text" class={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="edit-username" placeholder="username"
+                    <div className="modal-body">
+                        <form id='edit-form' className="needs-validation" noValidate>
+                            <div className="mb-3">
+                                <label htmlFor="edit-username" className="form-label">Username</label>
+                                <input type="text" className={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="edit-username" placeholder="username"
                                     onChange={(e) => setUsername(e.target.value)} value={username} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {usernameError}
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="edit-email" class="form-label">Email</label>
-                                <input type="email" class={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="edit-email" placeholder="email@gmail.com"
+                            <div className="mb-3">
+                                <label htmlFor="edit-email" className="form-label">Email</label>
+                                <input type="email" className={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="edit-email" placeholder="email@gmail.com"
                                     onChange={(e) => setEmail(e.target.value)} value={email} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {emailError}
                                 </div>
                             </div>
 
-                            <div class="form-check form-switch mt-4">
-                                <input class="form-check-input cursor-pointer" type="checkbox" role="switch" id="change-pw" checked={changePassword}
+                            <div className="form-check form-switch mt-4">
+                                <input className="form-check-input cursor-pointer" type="checkbox" role="switch" id="change-pw" checked={changePassword}
                                     onChange={() => setChangePassword(prev => !prev)} />
-                                <label class="form-check-label cursor-pointer" for="change-pw">Change Password</label>
+                                <label className="form-check-label cursor-pointer" htmlFor="change-pw">Change Password</label>
                             </div>
 
                             {
                                 changePassword ?
                                     <div className="mt-4">
-                                        <div class="mb-3">
-                                            <label for="edit-password" class="form-label">New Password</label>
-                                            <input type="password" class={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="edit-password" placeholder="password"
+                                        <div className="mb-3">
+                                            <label htmlFor="edit-password" className="form-label">New Password</label>
+                                            <input type="password" className={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="edit-password" placeholder="password"
                                                 onChange={(e) => setPassword(e.target.value)} value={password} required />
-                                            <div class="invalid-feedback">
+                                            <div className="invalid-feedback">
                                                 {passwordError}
                                             </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="edit-password2" class="form-label">Confirmed Password</label>
-                                            <input type="password" class={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="edit-password2" placeholder="confirmed password"
+                                        <div className="mb-3">
+                                            <label htmlFor="edit-password2" className="form-label">Confirmed Password</label>
+                                            <input type="password" className={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="edit-password2" placeholder="confirmed password"
                                                 onChange={(e) => setPassword2(e.target.value)} value={password2} required />
-                                            <div class="invalid-feedback">
+                                            <div className="invalid-feedback">
                                                 {password2Error}
                                             </div>
                                         </div>
@@ -213,12 +213,12 @@ const EditUserForm = ({ actionUser, users }) => {
                             }
 
 
-                            <button id='edit-submit-btn' class="btn btn-primary d-none" type="submit">Submit form</button>
+                            <button id='edit-submit-btn' className="btn btn-primary d-none" type="submit">Submit form</button>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onClick={submitForm}>Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary" onClick={submitForm}>Save changes</button>
                     </div>
                 </div>
             </div>

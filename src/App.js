@@ -13,6 +13,8 @@ import ActivitiesView from './views/ActivitiesView';
 import UserView from './views/UserView';
 import ReportListView from './views/ReportListView';
 import ReportView from './views/ReportView';
+import AnalysisView from './views/AnalysisView';
+import PageNotFoundView from './views/PageNotFoundView';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
                 <Route path="/users" element={<UserView />} />
                 <Route path="/report" element={<ReportListView />} />
                 <Route path="/report/:id" element={<ReportView />} />
+                <Route path="/analysis" element={<AnalysisView />} />
+                <Route path="*" element={<PageNotFoundView />} />
             </Routes>
         </Router>
     );

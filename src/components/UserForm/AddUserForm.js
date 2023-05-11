@@ -147,57 +147,57 @@ const AddUserForm = ({ userType, users }) => {
     }, [])
 
     return (
-        <div class="modal fade" id="add-modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add New {userType.charAt(0).toUpperCase() + userType.slice(1)}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="add-modal" tabIndex="-1">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Add New {userType.charAt(0).toUpperCase() + userType.slice(1)}</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form id='add-form' class="needs-validation" noValidate>
-                            <div class="mb-3">
-                                <label for="add-username" class="form-label">Username</label>
-                                <input type="text" class={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="add-username" placeholder="username"
+                    <div className="modal-body">
+                        <form id='add-form' className="needs-validation" noValidate>
+                            <div className="mb-3">
+                                <label htmlFor="add-username" className="form-label">Username</label>
+                                <input type="text" className={`form-control ${usernameError != '' ? 'is-invalid' : ''}`} id="add-username" placeholder="username"
                                     onChange={(e) => setUsername(e.target.value)} value={username} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {usernameError}
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="add-email" class="form-label">Email</label>
-                                <input type="email" class={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="add-email" placeholder="email@gmail.com"
+                            <div className="mb-3">
+                                <label htmlFor="add-email" className="form-label">Email</label>
+                                <input type="email" className={`form-control ${emailError != '' ? 'is-invalid' : ''}`} id="add-email" placeholder="email@gmail.com"
                                     onChange={(e) => setEmail(e.target.value)} value={email} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {emailError}
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="add-password" class="form-label">Password</label>
-                                <input type="password" class={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="add-password" placeholder="password"
+                            <div className="mb-3">
+                                <label htmlFor="add-password" className="form-label">Password</label>
+                                <input type="password" className={`form-control ${passwordError != '' ? 'is-invalid' : ''}`} id="add-password" placeholder="password"
                                     onChange={(e) => setPassword(e.target.value)} value={password} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {passwordError}
                                 </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="add-password2" class="form-label">Confirmed Password</label>
-                                <input type="password" class={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="add-password2" placeholder="confirmed password"
+                            <div className="mb-3">
+                                <label htmlFor="add-password2" className="form-label">Confirmed Password</label>
+                                <input type="password" className={`form-control ${password2Error != '' ? 'is-invalid' : ''}`} id="add-password2" placeholder="confirmed password"
                                     onChange={(e) => setPassword2(e.target.value)} value={password2} required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     {password2Error}
                                 </div>
                             </div>
 
-                            <button id='add-submit-btn' class="btn btn-primary d-none" type="submit">Submit form</button>
+                            <button id='add-submit-btn' className="btn btn-primary d-none" type="submit">Submit form</button>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onClick={submitForm}>Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-primary" onClick={submitForm}>Save changes</button>
                     </div>
                 </div>
             </div>
