@@ -40,7 +40,9 @@ const EditUserForm = ({ actionUser, users }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept-Type': 'application/json'
+                'Accept-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods': "POST, GET, OPTIONS"
             },
             body: JSON.stringify({
                 user: {
