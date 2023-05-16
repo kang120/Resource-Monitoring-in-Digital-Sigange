@@ -5,8 +5,8 @@ const useSettingStore = create((set) => ({
         "development_base_url": 'http://localhost:3000',
         "production_base_url": '..',
         "api": {
-            "development_base_url": 'http://13.212.14.24:2020',
-            "production_base_url": "http://13.212.14.24:2020",
+            "development_base_url": 'http://52.63.29.84:2020',
+            "production_base_url": "http://52.63.29.84:2020",
             "auth": '/api/auth',
             "getUserActivities": '/api/get_user_activities',
             'getMinMaxDate': '/api/get_min_max_date',
