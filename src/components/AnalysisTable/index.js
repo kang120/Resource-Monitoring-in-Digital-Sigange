@@ -17,6 +17,7 @@ const AnalysisTable = ({ analysisData, analysisNumericData }) => {
 
             <DataTable value={isNumeric ? analysisNumericData : analysisData} stripedRows>
                 <Column field='Cluster' header='Cluster' style={{ width: '7%', textAlign: 'center' }} />
+                <Column field='Total User' header='Total User' style={{ width: '7%', textAlign: 'center' }} />
                 <Column field='Session Count' header='Session Count' style={{ width: '10%', textAlign: 'center' }} />
                 <Column field='Layout Management Preference' header='Layout Management Preference' style={{ width: '10%', textAlign: 'center' }} />
                 <Column field='View Only Preference' header='View Only Preference' style={{ width: '10%', textAlign: 'center' }} />

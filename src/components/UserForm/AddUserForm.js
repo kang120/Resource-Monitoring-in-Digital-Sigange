@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './index.css'
 import useSettingStore from "../../stores/SettingsStore";
+import { useNavigate } from "react-router-dom";
 
 const AddUserForm = ({ userType, users }) => {
     const { settings } = useSettingStore();
@@ -14,6 +15,8 @@ const AddUserForm = ({ userType, users }) => {
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [password2Error, setPassword2Error] = useState('')
+
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         return String(email)
@@ -45,15 +48,13 @@ const AddUserForm = ({ userType, users }) => {
 
         const data = await res.json();
 
-        if (data.message == 'Success') {
-            console.log('added user successfully')
-            window.localStorage.setItem('visited', false)
-            window.localStorage.setItem('alert_message_type', 'success')
-            window.localStorage.setItem('alert_message', 'Successfully added user')
-        }
+        console.log(data)
+        window.localStorage.setItem('visited', false)
+        window.localStorage.setItem('alert_message_type', 'success')
+        window.localStorage.setItem('alert_message', 'Successfully added user')
     }
 
-    const submitForm = () => {
+    const submitForm = async () => {
         let submitFlag = true;
         let userExist = false;
         let emailExist = false;
@@ -125,8 +126,9 @@ const AddUserForm = ({ userType, users }) => {
         }
 
         if (submitFlag) {
-            document.getElementById("add-submit-btn").click();
-            insertNewUser();
+            //document.getElementById("add-submit-btn").click();
+            await insertNewUser();
+            navigate(0);
         }
     }
 

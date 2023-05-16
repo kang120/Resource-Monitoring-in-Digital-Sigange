@@ -23,7 +23,11 @@ const Header = () => {
     return (
         <div className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
             <div className="container-fluid">
-                <div className='collapse navbar-collapse'>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar"
+                        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className='collapse navbar-collapse' id="main-navbar">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item text-uppercase">
                             <a className={`nav-link ${window.location.pathname.split('/')[1] == 'dashboard' ? 'active' : ''}`} href={dashboard_url}>
@@ -47,7 +51,7 @@ const Header = () => {
                         </li>
                     </ul>
                     <ul className="navbar-nav ms-auto align-items-center">
-                        <li className="me-4 text-light">{username}</li>
+                        <li className="nav-item text-light">{username}</li>
                         <li className="nav-item text-uppercase">
                             <a className="nav-link" onClick={logout}>
                                 Logout

@@ -174,12 +174,13 @@ const ActivitiesView = () => {
     const customClustering = async () => {
         setClustering(true)
 
-        const url = settings['api']['base_url'] + settings['api']['customClustering']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['customClustering']
 
         const filterDate = {
             'month': selectedMonths,
             'year': selectedYears
         }
+        console.log(filterDate)
 
         const res = await fetch(url, {
             method: 'POST',
@@ -217,89 +218,91 @@ const ActivitiesView = () => {
             <Header />
 
             <div className="page-body">
-                <Alerts />
-                <h2 className="mb-5">Activities Data</h2>
-
                 {
                     isLoading ?
                         <div className="loading-text d-flex align-items-center">
-                            <div className="spinner-border text-dark me-5" style={{ width: '5rem', height: '5rem' }} role="status">
+                            <div className="spinner-border text-dark me-3" role="status">
                                 <span className="visually-hidden">Loading Data...</span>
                             </div>
                             Loading Data
-                        </div> :
-                        <div>
-                            <div className='d-flex align-items-center'>
-                                <div className='d-flex align-items-center'>
-                                    <label>Month: </label>
-                                    <div ref={monthRef} className='position-relative ms-3'>
-                                        <div className='border ps-4 pe-2 py-1 rounded-1 d-flex align-items-center' style={{ cursor: 'pointer' }} onClick={toggleMonthDropdown}>
-                                            Select Month
-                                            <div className={`icon ${showMonthDropdown ? 'icon-active' : ''}`}>
-                                                <FontAwesomeIcon icon={faAngleDown} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`dropdown ${showMonthDropdown ? 'dropdown-active' : ''}`}>
-                                            <div className='d-flex align-items center mt-3 mb-4'>
-                                                <input id='check-all-month' className="form-check-input" type="checkbox" checked={selectedMonths.length == 12}
-                                                    onChange={(e) => toggleAllMonth(e)} />
-                                                <label className="form-check-label ms-3 text-danger" htmlFor='check-all-month'>
-                                                    Check All
-                                                </label>
-                                            </div>
-                                            {
-                                                monthRange.map((month, index) => (
-                                                    <div key={index} className='d-flex align-items center mt-3'>
-                                                        <input id={`month${month}`} className="form-check-input" type="checkbox" value={month} checked={selectedMonths.includes(month)}
-                                                            onChange={(e) => onMonthChange(e)} />
-                                                        <label className="form-check-label ms-3" htmlFor={`month${month}`}>
-                                                            {month}
-                                                        </label>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className='d-flex align-items-center ms-5'>
-                                    <label>Year: </label>
-                                    <div ref={yearRef} className='position-relative ms-3'>
-                                        <div className='border ps-4 pe-2 py-1 rounded-1 d-flex align-items-center' style={{ cursor: 'pointer' }} onClick={toggleYearDropdown}>
-                                            Select Year
-                                            <div className={`icon ${showYearDropdown ? 'icon-active' : ''}`}>
-                                                <FontAwesomeIcon icon={faAngleDown} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`dropdown ${showYearDropdown ? 'dropdown-active' : ''}`}>
-                                            <div className='d-flex align-items center mt-3 mb-4'>
-                                                <input id='check-all-year' className="form-check-input" type="checkbox" checked={selectedYears.length == yearRange.length}
-                                                    onChange={(e) => toggleAllYear(e)} />
-                                                <label className="form-check-label ms-3 text-danger" htmlFor='check-all-year'>
-                                                    Check All
-                                                </label>
-                                            </div>
-                                            {
-                                                yearRange.map((year, index) => (
-                                                    <div key={index} className='d-flex align-items center mt-3'>
-                                                        <input id={`year_${year}`} className="form-check-input" type="checkbox" value={year} checked={selectedYears.includes(year)}
-                                                            onChange={(e) => onYearChange(e)} />
-                                                        <label className="form-check-label ms-3" htmlFor={`year_${year}`}>
-                                                            {year}
-                                                        </label>
-                                                    </div>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button className='btn btn-secondary ms-auto px-4' data-bs-toggle="modal" data-bs-target="#custom-cluster">Go to cluster these users</button>
-                            </div>
-                            <ActivitiesTable filterActivities={filterActivities} />
                         </div>
+                        :
+                        <>
+                            <Alerts />
+                            <div className="mt-5">
+                                <div className='d-flex align-items-center'>
+                                    <div className='d-flex align-items-center'>
+                                        <label>Month: </label>
+                                        <div ref={monthRef} className='position-relative ms-3'>
+                                            <div className='border ps-4 pe-2 py-1 rounded-1 d-flex align-items-center' style={{ cursor: 'pointer' }} onClick={toggleMonthDropdown}>
+                                                Select Month
+                                                <div className={`icon ${showMonthDropdown ? 'icon-active' : ''}`}>
+                                                    <FontAwesomeIcon icon={faAngleDown} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`dropdown ${showMonthDropdown ? 'dropdown-active' : ''}`}>
+                                                <div className='d-flex align-items center mt-3 mb-4'>
+                                                    <input id='check-all-month' className="form-check-input" type="checkbox" checked={selectedMonths.length == 12}
+                                                        onChange={(e) => toggleAllMonth(e)} />
+                                                    <label className="form-check-label ms-3 text-danger" htmlFor='check-all-month'>
+                                                        Check All
+                                                    </label>
+                                                </div>
+                                                {
+                                                    monthRange.map((month, index) => (
+                                                        <div key={index} className='d-flex align-items center mt-3'>
+                                                            <input id={`month${month}`} className="form-check-input" type="checkbox" value={month} checked={selectedMonths.includes(month)}
+                                                                onChange={(e) => onMonthChange(e)} />
+                                                            <label className="form-check-label ms-3" htmlFor={`month${month}`}>
+                                                                {month}
+                                                            </label>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className='d-flex align-items-center ms-5'>
+                                        <label>Year: </label>
+                                        <div ref={yearRef} className='position-relative ms-3'>
+                                            <div className='border ps-4 pe-2 py-1 rounded-1 d-flex align-items-center' style={{ cursor: 'pointer' }} onClick={toggleYearDropdown}>
+                                                Select Year
+                                                <div className={`icon ${showYearDropdown ? 'icon-active' : ''}`}>
+                                                    <FontAwesomeIcon icon={faAngleDown} />
+                                                </div>
+                                            </div>
+
+                                            <div className={`dropdown ${showYearDropdown ? 'dropdown-active' : ''}`}>
+                                                <div className='d-flex align-items center mt-3 mb-4'>
+                                                    <input id='check-all-year' className="form-check-input" type="checkbox" checked={selectedYears.length == yearRange.length}
+                                                        onChange={(e) => toggleAllYear(e)} />
+                                                    <label className="form-check-label ms-3 text-danger" htmlFor='check-all-year'>
+                                                        Check All
+                                                    </label>
+                                                </div>
+                                                {
+                                                    yearRange.map((year, index) => (
+                                                        <div key={index} className='d-flex align-items center mt-3'>
+                                                            <input id={`year_${year}`} className="form-check-input" type="checkbox" value={year} checked={selectedYears.includes(year)}
+                                                                onChange={(e) => onYearChange(e)} />
+                                                            <label className="form-check-label ms-3" htmlFor={`year_${year}`}>
+                                                                {year}
+                                                            </label>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button className='btn btn-secondary ms-auto px-4' data-bs-toggle="modal" data-bs-target="#custom-cluster">Go to cluster these users</button>
+                                </div>
+                                <ActivitiesTable filterActivities={filterActivities} />
+                            </div>
+
+                        </>
                 }
             </div>
 
@@ -358,7 +361,7 @@ const ActivitiesView = () => {
                 isClustering ?
                     <div className="position-fixed top-0 w-100 h-100" style={{ background: 'rgba(217, 217, 217, 0.7)' }}>
                         <div className="loading-text d-flex align-items-center">
-                            <div className="spinner-border text-success me-5" style={{ width: '5rem', height: '5rem' }} role="status">
+                            <div className="spinner-border text-success me-3" role="status">
                                 <span className="visually-hidden">Wait for clustering...</span>
                             </div>
                             <div className="text-dark fw-bold">

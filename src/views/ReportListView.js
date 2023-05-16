@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Alerts from "../components/Alerts";
 
 const ReportListView = () => {
+    const [isLoading, setLoading] = useState(true)
     const { settings } = useSettingStore();
     const base_url = settings[`${process.env.NODE_ENV}_base_url`]
 
@@ -45,11 +46,19 @@ const ReportListView = () => {
                     return
                 }
 
+                var cluster_period = 'All';
+
+                try{
+                    cluster_period = JSON.parse(report['cluster_period'])
+                }catch{
+                    console.log('This is monthly report')
+                }
+
                 cr.push({
                     id: report['id'],
                     name: report['name'],
                     userGroup: report['user_group'],
-                    clusterPeriods: JSON.parse(report['cluster_period']),
+                    clusterPeriods: cluster_period,
                     date: report['date_time']
                 })
 
@@ -57,6 +66,8 @@ const ReportListView = () => {
 
                 const dataPoints = []
                 const cmaps = []
+
+                console.log(clusterDiagram);
 
                 clusterDiagram.forEach(cp => {
                     dataPoints.push({
@@ -75,18 +86,15 @@ const ReportListView = () => {
 
             setClusterReports([...cr])
             setClusterDiagramData([...cdd])
+
+            setLoading(false)
         }
 
         fetchReports();
     }, [])
 
     const deleteReport = async () => {
-        navigate(0);
-        window.localStorage.setItem('visited', false)
-        window.localStorage.setItem('alert_message_type', 'success')
-        window.localStorage.setItem('alert_message', 'Successfully delete report ' + actionReport['name'])
-
-        const url = settings['api']['base_url'] + settings['api']['deleteReport']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['deleteReport']
         console.log(url)
 
         const res = await fetch(url, {
@@ -99,6 +107,15 @@ const ReportListView = () => {
                 id: actionReport['id'],
             })
         })
+
+        const data = res.json();
+
+        console.log(data)
+
+        window.localStorage.setItem('visited', false)
+        window.localStorage.setItem('alert_message_type', 'success')
+        window.localStorage.setItem('alert_message', 'Successfully delete report ' + actionReport['name'])
+        navigate(0);
     }
 
     return (
@@ -106,53 +123,79 @@ const ReportListView = () => {
             <Header />
 
             <div className="page-body">
-                <Alerts />
-                <h2 className="mb-5">Clustering Report</h2>
 
-                <div className="row d-flex">
-                    {
-                        clusterReports.map((report, index) => (
-                            <div key={index} className="p-4 col-4">
-                                <div className="card">
-                                    <div style={{ height: '250px' }}>
-                                        <ScatterChart data={clusterDiagramData[index]['data']} cmaps={clusterDiagramData[index]['cmaps']} />
-                                    </div>
-                                    <div className="card-body">
-                                        <h5 className="card-title text-primary">{report['name']}</h5>
-                                        <p className="card-text">User Group: <strong className="text-success">{report['userGroup']}</strong></p>
-                                        <p className="card-text">Cluster Months: &nbsp;&nbsp;
-                                            {
-                                                report['clusterPeriods']['month'].map((month, index) => {
-                                                    if (index != report['clusterPeriods']['month'].length - 1) {
-                                                        return <span key={index} className="text-info"><strong>{month + ', '}</strong></span>
-                                                    } else {
-                                                        return <span key={index} className="text-info"><strong>{month}</strong></span>
+                {isLoading ?
+                    <div className="loading-text d-flex align-items-center">
+                        <div className="spinner-border text-dark me-3" role="status">
+                            <span className="visually-hidden">Loading Data...</span>
+                        </div>
+                        Loading Data
+                    </div>
+                    :
+                    <>
+                        <Alerts />
+
+                        {
+                            clusterReports.length == 0 ?
+                                <div>
+                                    No report saved
+                                </div>
+                                :
+                                null
+                        }
+
+                        <div className="row d-flex mt-5">
+                            {
+                                clusterReports.map((report, index) => (
+                                    <div key={index} className="p-4 col-4">
+                                        <div className="card">
+                                            <div style={{ height: '250px' }}>
+                                                <ScatterChart data={clusterDiagramData[index]['data']} cmaps={clusterDiagramData[index]['cmaps']} />
+                                            </div>
+                                            <div className="card-body">
+                                                <h5 className="card-title text-primary">{report['name']}</h5>
+                                                <p className="card-text">User Group: <strong className="text-success">{report['userGroup']}</strong></p>
+                                                <p className="card-text">Cluster Months: &nbsp;&nbsp;
+                                                    {
+                                                        report['clusterPeriods'] == 'All' ?
+                                                            <span className="text-info"><strong>All</strong></span>
+                                                            :
+                                                            report['clusterPeriods']['month'].map((month, index) => {
+                                                                if (index != report['clusterPeriods']['month'].length - 1) {
+                                                                    return <span key={index} className="text-info"><strong>{month + ', '}</strong></span>
+                                                                } else {
+                                                                    return <span key={index} className="text-info"><strong>{month}</strong></span>
+                                                                }
+                                                            })
                                                     }
-                                                })
-                                            }
-                                        </p>
-                                        <p className="card-text">Cluster Years: &nbsp;&nbsp;
-                                            {
-                                                report['clusterPeriods']['year'].map((year, index) => {
-                                                    if (index != report['clusterPeriods']['year'].length - 1) {
-                                                        return <span key={index} className="text-danger"><strong>{year + ', '}</strong></span>
-                                                    } else {
-                                                        return <span key={index} className="text-danger"><strong>{year}</strong></span>
+                                                </p>
+                                                <p className="card-text">Cluster Years: &nbsp;&nbsp;
+                                                    {
+                                                        report['clusterPeriods'] == 'All' ?
+                                                            <span className="text-info"><strong>All</strong></span>
+                                                            :
+                                                            report['clusterPeriods']['year'].map((year, index) => {
+                                                                if (index != report['clusterPeriods']['year'].length - 1) {
+                                                                    return <span key={index} className="text-danger"><strong>{year + ', '}</strong></span>
+                                                                } else {
+                                                                    return <span key={index} className="text-danger"><strong>{year}</strong></span>
+                                                                }
+                                                            })
                                                     }
-                                                })
-                                            }
-                                        </p>
-                                        <div className="d-flex align-items-center">
-                                            <a href={`${base_url}/report/${report['id']}`} className="btn btn-primary ms-auto">View Report</a>
-                                            <button className="btn btn-danger ms-3 px-4" onClick={() => setActionReport(report)}
-                                                data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                                                </p>
+                                                <div className="d-flex align-items-center">
+                                                    <a href={`${base_url}/report/${report['id']}`} className="btn btn-primary ms-auto">View Report</a>
+                                                    <button className="btn btn-danger ms-3 px-4" onClick={() => setActionReport(report)}
+                                                        data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
+                                ))
+                            }
+                        </div>
+                    </>
+                }
             </div>
 
             <div id='delete-modal' className="modal" tabIndex="-1">

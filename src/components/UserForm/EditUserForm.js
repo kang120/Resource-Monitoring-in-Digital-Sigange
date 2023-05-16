@@ -28,11 +28,6 @@ const EditUserForm = ({ actionUser, users }) => {
     };
 
     const updateUser = async () => {
-        navigate(0)
-        window.localStorage.setItem('visited', false)
-        window.localStorage.setItem('alert_message_type', 'success')
-        window.localStorage.setItem('alert_message', 'Successfully update user ' + username)
-
         const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['updateUser']
         console.log(url)
 
@@ -40,22 +35,25 @@ const EditUserForm = ({ actionUser, users }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept-Type': 'application/json',
-                'Access-Control-Allow-Origin' : '*',
-                'Access-Control-Allow-Methods': "POST, GET, OPTIONS"
+                'Accept-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    user_id: actionUser['id'],
-                    username: username,
-                    email: email,
-                    password: password
-                }
+                user_id: actionUser['id'],
+                username: username,
+                email: email,
+                password: password
             })
         })
+
+        const data = await res.json();
+
+        console.log(data)
+        window.localStorage.setItem('visited', false)
+        window.localStorage.setItem('alert_message_type', 'success')
+        window.localStorage.setItem('alert_message', 'Successfully update user ' + username)
     }
 
-    const submitForm = () => {
+    const submitForm = async (e) => {
         let submitFlag = true;
         let userExist = false;
         let emailExist = false;
@@ -131,8 +129,9 @@ const EditUserForm = ({ actionUser, users }) => {
         }
 
         if (submitFlag) {
-            document.getElementById("edit-submit-btn").click();
-            updateUser();
+            await updateUser();
+            navigate(0)
+            //document.getElementById("edit-submit-btn").click();
         }
     }
 
@@ -220,7 +219,7 @@ const EditUserForm = ({ actionUser, users }) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={submitForm}>Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={(e) => submitForm(e)}>Save changes</button>
                     </div>
                 </div>
             </div>

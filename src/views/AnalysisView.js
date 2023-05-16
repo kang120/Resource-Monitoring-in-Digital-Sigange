@@ -34,6 +34,7 @@ const AnalysisView = () => {
         const analysisResult = clusters.map((c, index) => {
             return {
                 'Cluster': index + 1,
+                'Total User': c['total_user'],
                 'Session Count': 'low',
                 'Layout Management Preference': 'low',
                 'View Only Preference': 'low',

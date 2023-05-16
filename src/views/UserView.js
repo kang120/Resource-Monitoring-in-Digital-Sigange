@@ -13,6 +13,7 @@ import Alerts from "../components/Alerts";
 import { useNavigate } from "react-router-dom";
 
 const UserView = () => {
+    const [isLoading, setLoading] = useState(true)
     const { settings } = useSettingStore();
     const [users, setUsers] = useState({ 'admin': [], 'user': [] })
     const [userType, setUserType] = useState('admin')
@@ -49,6 +50,8 @@ const UserView = () => {
             })
 
             setUsers({ ...newUsers })
+
+            setLoading(false)
         }
 
         fetchUsers();
@@ -86,43 +89,54 @@ const UserView = () => {
             <Header />
 
             <div className="page-body">
-                <Alerts />
-                <h2 className="mb-5">Users</h2>
+                {
+                    isLoading ?
+                        <div className="loading-text d-flex align-items-center">
+                            <div className="spinner-border text-dark me-3" role="status">
+                                <span className="visually-hidden">Loading Data...</span>
+                            </div>
+                            Loading Data
+                        </div>
+                        :
+                        <>
+                            <Alerts />
+                            <div className="mt-5 d-flex">
+                                <div className="form-check form-check-inline ms-2">
+                                    <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="admin" value="admin" checked={userType == 'admin'}
+                                        onChange={() => changeUserType('admin')} />
+                                    <label className="form-check-label cursor-pointer" htmlFor="admin">
+                                        Admin
+                                    </label>
+                                </div>
 
-                <div className="mt-5 d-flex">
-                    <div className="form-check form-check-inline ms-2">
-                        <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="admin" value="admin" checked={userType == 'admin'}
-                            onChange={() => changeUserType('admin')} />
-                        <label className="form-check-label cursor-pointer" htmlFor="admin">
-                            Admin
-                        </label>
-                    </div>
+                                <div className="form-check form-check-inline ms-4 cursor-pointer">
+                                    <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="user" value="user" checked={userType == 'user'}
+                                        onChange={() => changeUserType('user')} />
+                                    <label className="form-check-label cursor-pointer" htmlFor="user">
+                                        User
+                                    </label>
+                                </div>
 
-                    <div className="form-check form-check-inline ms-4 cursor-pointer">
-                        <input className="form-check-input cursor-pointer" type="radio" name="user_type" id="user" value="user" checked={userType == 'user'}
-                            onChange={() => changeUserType('user')} />
-                        <label className="form-check-label cursor-pointer" htmlFor="user">
-                            User
-                        </label>
-                    </div>
+                                {
+                                    sessionUserId == 22 ?
+                                        <button className="btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#add-modal">
+                                            Add new {userType}
+                                        </button> :
+                                        null
+                                }
+                            </div>
 
-                    {
-                        sessionUserId == 22 ?
-                            <button className="btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#add-modal">
-                                Add new {userType}
-                            </button> :
-                            null
-                    }
-                </div>
+                            <div className='mt-4'>
+                                <DataTable value={users[userType]} paginator footer={footer} rows={10} stripedRows rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}>
+                                    <Column field='id' header='User ID' style={{ width: '10%', textAlign: 'center' }} />
+                                    <Column field='username' header='Username' style={{ width: '35%' }} />
+                                    <Column field='email' header='Email' style={{ width: '55%' }} />
+                                    <Column body={actionsBody} />
+                                </DataTable>
+                            </div>
+                        </>
 
-                <div className='mt-4'>
-                    <DataTable value={users[userType]} paginator footer={footer} rows={10} stripedRows rowsPerPageOptions={[5, 10, 15, 20, 25, 30]}>
-                        <Column field='id' header='User ID' style={{ width: '10%', textAlign: 'center' }} />
-                        <Column field='username' header='Username' style={{ width: '35%' }} />
-                        <Column field='email' header='Email' style={{ width: '55%' }} />
-                        <Column body={actionsBody} />
-                    </DataTable>
-                </div>
+                }
             </div>
 
             <AddUserForm userType={userType} users={users} />
