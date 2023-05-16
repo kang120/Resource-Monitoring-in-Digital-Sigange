@@ -6,7 +6,7 @@ const useSettingStore = create((set) => ({
         "production_base_url": '..',
         "api": {
             "development_base_url": 'http://52.63.29.84:2020',
-            "production_base_url": "https://screenplify-tracker.netlify.app/",
+            "production_base_url": "https://screenplify-tracker.netlify.app",
             "auth": '/api/auth',
             "getUserActivities": '/api/get_user_activities',
             'getMinMaxDate': '/api/get_min_max_date',
