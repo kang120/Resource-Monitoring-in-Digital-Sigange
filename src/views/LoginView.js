@@ -24,8 +24,7 @@ const LoginView = () => {
 
         console.log(JSON.stringify(auth))
 
-        //const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['auth']
-        const url = 'https://screenplify-tracker.netlify.app' + settings['api']['auth']
+        const url = settings['api'][`${process.env.NODE_ENV}_base_url`] + settings['api']['auth']
         console.log(url)
 
         const res = await fetch(url, {
