@@ -180,7 +180,6 @@ const ActivitiesView = () => {
             'month': selectedMonths,
             'year': selectedYears
         }
-        console.log(filterDate)
 
         const res = await fetch(url, {
             method: 'POST',

@@ -42,6 +42,8 @@ const LoginView = () => {
 
         if (data.message == 'Incorrect Login') {
             setLoginError('Incorrect Login')
+        } else if (data.data.user_type == 'user') {
+            setLoginError('You does not have permission to enter this system')
         } else {
             setLoginError('')
 
@@ -74,7 +76,7 @@ const LoginView = () => {
     useEffect(() => {
         const user = JSON.parse(window.sessionStorage.getItem('auth'));
 
-        if(user != undefined){
+        if (user != undefined) {
             navigate('/dashboard')
         }
     }, [])
@@ -99,7 +101,7 @@ const LoginView = () => {
                         {
                             loginError != '' &&
                             <div className="alert alert-danger mb-5">
-                                <p>Incorrect Login</p>
+                                <p>{loginError}</p>
                             </div>
                         }
                         <form className='needs-validation' onSubmit={e => onSubmit(e)} noValidate>

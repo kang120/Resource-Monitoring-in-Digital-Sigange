@@ -15,7 +15,7 @@ const ReportListView = () => {
     const [clusterReports, setClusterReports] = useState([]);
     const [clusterDiagramData, setClusterDiagramData] = useState([]);
 
-    const colorMaps = ['red', 'green', 'blue', 'yellow', 'orange'];
+    const colorMaps = ['#ff9f40', '#4bc0c0', '#36a2eb', '#9966ff', '#e6e47a', '#f0968d', '#9A208C', '#F7D060', '#98D8AA', '#FC4F00'];
 
     const [actionReport, setActionReport] = useState({});
 

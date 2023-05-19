@@ -149,6 +149,12 @@ const EditUserForm = ({ actionUser, users }) => {
                 form.classList.add('was-validated')
             }, false)
         })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        })
     }, [])
 
     useEffect(() => {

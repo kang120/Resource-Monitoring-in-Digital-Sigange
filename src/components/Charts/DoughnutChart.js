@@ -8,14 +8,28 @@ const DoughnutChart = ({ data, xlabels }) => {
             {
                 data: data,
                 backgroundColor: [
-                    'rgb(255, 159, 64)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)'
+                    '#ff9f40',
+                    '#4bc0c0',
+                    '#36a2eb',
+                    '#9966ff',
+                    '#e6e47a',
+                    '#f0968d',
+                    '#9A208C',
+                    '#F7D060',
+                    '#98D8AA',
+                    '#FC4F00'
                 ],
                 hoverBackgroundColor: [
-                    'rgba(255, 159, 64, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(54, 162, 235, 0.5)'
+                    '#ff9f4032',
+                    '#4bc0c032',
+                    '#36a2eb32',
+                    '#9966ff32',
+                    '#e6e47a32',
+                    '#f0968d32',
+                    '#9A208C32',
+                    '#F7D06032',
+                    '#98D8AA32',
+                    '#FC4F0032'
                 ]
             }
         ]

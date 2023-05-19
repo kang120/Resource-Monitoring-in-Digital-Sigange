@@ -37,12 +37,10 @@ const AddUserForm = ({ userType, users }) => {
                 'Accept-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    username: username,
-                    email: email,
-                    password: password,
-                    userType: userType
-                }
+                username: username,
+                email: email,
+                password: password,
+                userType: userType
             })
         })
 
@@ -51,10 +49,10 @@ const AddUserForm = ({ userType, users }) => {
         console.log(data)
         window.localStorage.setItem('visited', false)
         window.localStorage.setItem('alert_message_type', 'success')
-        window.localStorage.setItem('alert_message', 'Successfully added user')
+        window.localStorage.setItem('alert_message', 'Successfully added user ' + username)
     }
 
-    const submitForm = async () => {
+    const submitForm = async (e) => {
         let submitFlag = true;
         let userExist = false;
         let emailExist = false;
@@ -62,6 +60,7 @@ const AddUserForm = ({ userType, users }) => {
         users['admin'].forEach(user => {
             if (user['username'] == username) {
                 userExist = true
+                console.log('yes exist')
             }
 
             if (user['email'] == email) {
@@ -146,6 +145,12 @@ const AddUserForm = ({ userType, users }) => {
                 form.classList.add('was-validated')
             }, false)
         })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        })
     }, [])
 
     return (
@@ -199,7 +204,7 @@ const AddUserForm = ({ userType, users }) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={submitForm}>Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={(e) => submitForm(e)}>Save changes</button>
                     </div>
                 </div>
             </div>

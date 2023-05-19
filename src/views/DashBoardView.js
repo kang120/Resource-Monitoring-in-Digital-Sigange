@@ -22,7 +22,7 @@ const DashBoardView = () => {
     const mm = monthNames[today.getMonth()];
     const yyyy = today.getFullYear()
 
-    const colorMaps = ['red', 'green', 'blue', 'yellow', 'orange'];
+    const colorMaps = ['#ff9f40', '#4bc0c0', '#36a2eb', '#9966ff', '#e6e47a', '#f0968d', '#9A208C', '#F7D060', '#98D8AA', '#FC4F00'];
 
     const [userGroup, setUserGroup] = useState(0)
     const [clusters, setClusters] = useState([])
@@ -281,7 +281,7 @@ const DashBoardView = () => {
 
                         <div className="mt-6">
                             <h2>Average Visited Pages Frequency</h2>
-                            <div className="mt-4 p-5">
+                            <div className="mt-4">
                                 <div className='d-flex align-items-center justify-content-center flex-wrap'>
                                     {
                                         visitedPagesFrequency.map((vpf, index) => (
