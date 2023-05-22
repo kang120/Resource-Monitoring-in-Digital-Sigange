@@ -45,6 +45,7 @@ const AnalysisView = () => {
         const analysisNumeticResult = clusters.map((c, index) => {
             return {
                 'Cluster': index + 1,
+                'Total User': c['total_user'],
                 'Session Count': -1,
                 'Layout Management Preference': -1,
                 'View Only Preference': -1,

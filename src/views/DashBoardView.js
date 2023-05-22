@@ -200,21 +200,21 @@ const DashBoardView = () => {
                                 * This clustering result is started from 17 September 2019
                             </div>
 
-                            <div className='text-danger font-monospace d-flex mt-4'>
+                            <div className='text-danger font-monospace mt-4'>
                                 * User ID
-                                <div className='position-relative custom-tooltip'>
+                                <span className='position-relative custom-tooltip'>
                                     &nbsp;<span className="badge rounded-pill text-bg-primary cursor-pointer">22</span>
                                     <div className='tooltip-text'>
                                         <div className='text-center'>Super Admin</div>
                                     </div>
-                                </div>
+                                </span>
                                 &nbsp;and&nbsp;
-                                <div className='position-relative custom-tooltip'>
+                                <span className='position-relative custom-tooltip'>
                                     <span className="badge rounded-pill text-bg-danger cursor-pointer">0</span>&nbsp;
                                     <div className='tooltip-text'>
                                         <div className='text-center'>Fail Login User</div>
                                     </div>
-                                </div>
+                                </span>
                                 are excluded in clustering
                             </div>
 
